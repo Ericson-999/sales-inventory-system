@@ -10,13 +10,16 @@
 </head>
 <body>
   <div class="form_container">
-      <div>
-        <img src="../images/heroImage.png" width="850px" height="730px" alt="hero Image">
-      </div>
       <form class="login_form" action="../backend/routes/login.php" method="POST">
         <h1>Login</h1>
-        <input type="text" name="username" placeholder="Username" required />
-        <input type="password" name="password" placeholder="Password" required />
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" name="username" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
         <button type="submit">Login</button>
         <?php
           session_start();

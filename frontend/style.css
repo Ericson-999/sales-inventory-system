@@ -7,10 +7,9 @@
 body{
   margin: 0;
   padding: 0;
-  align-items: center;
-  justify-content: center;
-  background-color: #ccc;
-  font-family: 'Courier New', Courier, monospace;
+  background: url('../images/background1.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 
@@ -19,7 +18,7 @@ body{
 .nav-container{
   display: flex;
   align-items: center;
-  background-color: rgb(13, 34, 92);
+  background-color: rgb(13, 34, 92, 0.8);
   padding: 10px 20px;
   position: fixed;
   top: 0;
@@ -39,53 +38,74 @@ body{
 }
 
 .login_form{
-  background-color: rgb(13, 34, 92);
-  border-radius: 8px;
   width: 450px;
-  height: 450px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 125px;
-  margin-left: 125px;
-  padding-left: 50px;
-  padding-top: 30px;
+  height: 470px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.6); 
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .login_form h1{
   font-size: 50px;
-  padding-left: 25%;
+  padding-left: 34%;
   margin-bottom: 60px;
   color: #f4f4f4f4;
 }
 
-.login_form input{
-  height: 50px;
-  width: 350px;
-  margin-bottom: 20px;
-  text-align: center;
-  border-radius: 8px;
-  border: none;
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 10px;
 }
 
-.login_form button{
-  padding: 10px 20px;
-  font-size: 20px;
-  border-radius: 20px;
+.input-group i {
+  color: white;
+  margin-right: 10px;
+}
+
+.input-group input {
+  background: transparent;
   border: none;
-  margin-top: 5%;
-  margin-left: 65%;
+  outline: none;
+  color: white;
+  width: 100%;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4e54c8;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.15s;
+  transition: background-color 0.3s ease;
 }
 
-.login_form button:hover{
-  color: #f4f4f4f4;
-  background-color: #0056b3;
+button:hover {
+  background-color: #5f67d6;
+}
+
+@media (max-width: 400px) {
+  .login-container {
+    width: 90%;
+    margin: 50px auto;
+  }
 }
 
 .error-message {
   color: red;
   padding: 40px 38px;
+  margin-left: 55px;
   margin-bottom: 15px;
   border-radius: 5px;
 
@@ -137,7 +157,7 @@ nav{
 
 .admin-label span {
   display: inline-block;
-  transform: translateX(14px);
+  transform: translateX(5px);
 }
 
 .admin-label a {
@@ -157,9 +177,8 @@ nav{
 
 .sidebar {
   top: 70px;
-
   height: 100vh;
-  background-color: rgb(1, 17, 73);
+  background-color: rgba(0, 0, 0, 0.8);
   color: #f4f4f4;
   padding-top: 5px;
   padding-left: 5px;
@@ -315,7 +334,6 @@ tr:nth-child(even) {
 
 .product-summary-table {
   min-width: 600px;
-  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -357,8 +375,8 @@ tr:nth-child(even) {
   color: #0056b3;
 }
 
-.btn-edit,
-.btn-delete {
+.btn-edit{
+  width: 100px;
   padding: 10px 12px;
   border-radius: 5px;
   font-weight: bold;
@@ -369,6 +387,22 @@ tr:nth-child(even) {
   color: white !important;
   border: none;
 }
+
+.btn-delete {
+  width: 100px;
+  padding: 10px 12px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none !important;
+  margin-right: 5px;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+  color: white !important;
+  border: none;
+  font-family: 'Segoe UI', sans-serif;
+}
+
 
 .btn-edit {
   background-color: #007BFF;
