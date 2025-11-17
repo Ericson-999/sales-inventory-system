@@ -82,7 +82,7 @@ body{
 button {
   width: 100%;
   padding: 10px;
-  background-color: #4e54c8;
+  background-color: #0d225c;
   border: none;
   border-radius: 5px;
   color: white;
@@ -285,11 +285,11 @@ nav{
 
 .product-form input:focus {
   outline: none;
-  border-color: #0d225c;
+  border-color: #4e54c8;
 }
 
 .product-form button {
-  background-color: #0d225c;
+  background-color: #4e54c8;
   color: white;
   border: none;
   cursor: pointer;
@@ -304,7 +304,7 @@ nav{
 /* ------------------------ View Products Page --------------------------- */
 
 table {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   border-collapse: collapse;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -317,7 +317,7 @@ th, td {
 }
 
 th {
-  background-color: #007BFF;
+  background-color: #4e54c8;
   color: white;
 }
 
@@ -345,7 +345,7 @@ tr:nth-child(even) {
 }
 
 .product-summary-table th {
-  background-color: #0d225c;
+  background-color: #4e54c8;
   color: white;
   text-align: center;
 }
@@ -366,7 +366,7 @@ tr:nth-child(even) {
 
 
 .product-summary-table a {
-  color: #007BFF;
+  color: #4e54c8;
   font-weight: bold;
   text-decoration: none;
 }
@@ -405,7 +405,7 @@ tr:nth-child(even) {
 
 
 .btn-edit {
-  background-color: #007BFF;
+  background-color: #4e54c8;
 }
 
 .btn-edit:hover {

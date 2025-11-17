@@ -1,8 +1,7 @@
 <?php
 include '../backend/routes/auth.php';
 
-$username = $_SESSION['username'];
-$displayName = ($username === 'admin') ? 'Administrator' : ucfirst($username);
+$displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>
@@ -26,26 +25,48 @@ $displayName = ($username === 'admin') ? 'Administrator' : ucfirst($username);
       <li>
         <a href="../backend/routes/logout.php">
           <span><?php echo $displayName; ?></span>
-          <i class="fas fa-power-off"></i>
+          <i class="fa fa-sign-out"></i>
         </a>
       </li>
     </ul>
   </nav>
 
   <div class="home-container">
-    <div class="sidebar">
-      <ul>
-        <li><a href="home.php"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href="inventory.php"><i class="fas fa-clipboard-list"></i>Inventory</a></li>
-        <li class="active"><a href="sales.php"><i class="fas fa-coins"></i>Sales</a></li>
-        <li><a href="receiving.php"><i class="fas fa-clipboard-check"></i>Receiving</a></li>
-        <li><a href="category_list.php"><i class="fa fa-bars"></i></i>Category list</a></li>
-        <li><a href="product_list.php"><i class="fas fa-boxes"></i></i>Product list</a></li>
-        <li><a href="supplier_list.php"><i class="fas fa-truck"></i></i>Supplier list</a></li>
-        <li><a href="customer_list.php"><i class="fas fa-shopping-cart"></i></i>Customer list</a></li>
-        <li><a href="user.php"><i class="fa fa-user"></i></i>User</a></li>
-      </ul>
-    </div>
+    <?php $currentPage = basename($_SERVER['PHP_SELF']); ?>
+      <div class="sidebar">
+        <ul>
+          <li class="<?= $currentPage === 'home.php' ? 'active' : '' ?>">
+            <a href="home.php"><i class="fa fa-home"></i>Home</a>
+          </li>
+          <li class="<?= $currentPage === 'inventory.php' ? 'active' : '' ?>">
+            <a href="inventory.php"><i class="fas fa-clipboard-list"></i>Inventory</a>
+          </li>
+          <li class="<?= $currentPage === 'sales.php' ? 'active' : '' ?>">
+            <a href="sales.php"><i class="fas fa-coins"></i>Sales</a>
+          </li>
+
+          <?php if ($_SESSION['user_type'] === 'admin'): ?>
+            <li class="<?= $currentPage === 'receiving.php' ? 'active' : '' ?>">
+              <a href="receiving.php"><i class="fas fa-clipboard-check"></i>Receiving</a>
+            </li>
+            <li class="<?= $currentPage === 'category_list.php' ? 'active' : '' ?>">
+              <a href="category_list.php"><i class="fa fa-bars"></i>Category list</a>
+            </li>
+            <li class="<?= $currentPage === 'product_list.php' ? 'active' : '' ?>">
+              <a href="product_list.php"><i class="fas fa-boxes"></i>Product list</a>
+            </li>
+            <li class="<?= $currentPage === 'supplier_list.php' ? 'active' : '' ?>">
+              <a href="supplier_list.php"><i class="fas fa-truck"></i>Supplier list</a>
+            </li>
+            <li class="<?= $currentPage === 'customer_list.php' ? 'active' : '' ?>">
+              <a href="customer_list.php"><i class="fas fa-shopping-cart"></i>Customer list</a>
+            </li>
+            <li class="<?= $currentPage === 'staff_list.php' ? 'active' : '' ?>">
+              <a href="staff_list.php"><i class="fa fa-user"></i>Staff</a>
+            </li>
+          <?php endif; ?>
+        </ul>
+      </div>
 
   </div>
   
