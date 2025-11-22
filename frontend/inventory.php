@@ -66,9 +66,82 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
             </li>
           <?php endif; ?>
         </ul>
-      </div>  
+      </div>
+      
+      
+      <div class="main-content">
+        <div class="cards">
+          <div class="card">
+            <h3>Total Products</h3>
+            <p id="total-products">120</p>
+          </div>
+          <div class="card">
+            <h3>Categories</h3>
+            <p id="categories">8</p>
+          </div>
+          <div class="card">
+            <h3>Low Stock</h3>
+            <p id="low-stock">5</p>
+          </div>
+          <div class="card">
+            <h3>Out of Stock</h3>
+            <p id="out-stock">2</p>
+          </div>
+        </div>
 
+        <table>
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Stock</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Maggi Kari</td>
+              <td>Instant Noodles</td>
+              <td class="stock">0</td>
+              <td>₱129.00</td>
+            </tr>
+
+            <tr>
+              <td>Century Tuna</td>
+              <td>Can Goods</td>
+              <td class="stock">15</td>
+              <td>₱45.00</td>
+            </tr>
+            <tr>
+              <td>Snickers Fun Size</td>
+              <td>Chocolate Bar</td>
+              <td class="stock">3</td>
+              <td>₱400.00</td>
+            </tr>
+            <tr>
+              <td>Del Monte Four Seasons Juice Drink 1L</td>
+              <td>Drinks</td>
+              <td class="stock">8</td>
+              <td>₱214.00</td>
+            </tr>
+            <tr>
+              <td>Clover Chips</td>
+              <td>Chips</td>
+              <td class="stock">0</td>
+              <td>₱45.00</td>
+            </tr>
+
+            <tr>
+              <td>Dogibeef 5kg</td>
+              <td>Dog Food</td>
+              <td class="stock">20</td>
+              <td>₱300.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
-  
+
+  <script src="js/stockCells.js"></script>
 </body>
 </html>

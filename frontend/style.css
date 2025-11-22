@@ -581,3 +581,71 @@ tr:nth-child(even) {
   outline: none;          /* remove focus outline */
   color: #000;            /* optional: just change icon color */
 }
+
+
+/* ------------------------ Inventory Page Content --------------------------- */
+
+.main-content { 
+  flex: 1; padding: 20px;
+}
+
+.cards {
+  display: flex; gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #555; 
+}
+
+.card p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2f3640; 
+}
+
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  background-color: #fff; 
+  border-radius: 10px; 
+  overflow: hidden; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+}
+
+th, td { 
+  padding: 12px 15px; 
+}
+
+th { 
+  background-color: #4e54c8; 
+  color: #fff; 
+}
+
+tr:nth-child(even) { 
+  background-color: #f5f6fa; 
+}
+
+tr:hover { 
+  background-color: #dcdde1; 
+}
+
+.zero-stock { 
+  color: red; 
+  font-weight: bold; 
+}
+
+.low-stock { 
+  color: orange; 
+  font-weight: bold; 
+}
