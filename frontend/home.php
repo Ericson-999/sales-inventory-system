@@ -1,5 +1,18 @@
 <?php
 include '../backend/routes/auth.php';
+include '../backend/config/db_connect.php';
+
+// Get today's total sales
+$today = date('Y-m-d');
+$totalSalesQuery = $conn->prepare("SELECT SUM(amount) AS total_sales 
+                                   FROM sales 
+                                   WHERE DATE(date) = ?");
+                                   
+$totalSalesQuery->bind_param("s", $today);
+$totalSalesQuery->execute();
+$result = $totalSalesQuery->get_result();
+$row = $result->fetch_assoc();
+$totalSales = $row['total_sales'] ?? 0;
 
 $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['username'];
 ?>
@@ -72,7 +85,16 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
       </div>
 
     <div class="left-content">
-      <h2>Welcome, <?php echo $displayName ?>!</h2>
+      <div class="dashboard-header">
+        <h2>Welcome, <?php echo $displayName ?>!</h2>
+      </div>
+
+      <div class="sales-summary">
+        <div class="summary-box">
+          <h3>Total Sales Today</h3>
+          <p class="sales-amount"><?php echo number_format($totalSales, 2); ?></p>
+        </div>
+      </div>
     </div>
   </div>
   

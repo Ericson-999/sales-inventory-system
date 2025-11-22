@@ -18,7 +18,7 @@ body{
 .nav-container{
   display: flex;
   align-items: center;
-  background-color: rgb(13, 34, 92, 0.8);
+  background-color: rgb(31, 98, 171, 0.5);
   padding: 10px 20px;
   position: fixed;
   top: 0;
@@ -82,7 +82,7 @@ body{
 button {
   width: 100%;
   padding: 10px;
-  background-color: #5f67d6;
+  background-color: #226fc2;
   border: none;
   border-radius: 5px;
   color: white;
@@ -92,7 +92,7 @@ button {
 }
 
 button:hover {
-  background-color: #0d225c;
+  background-color: #1f62ab;
 }
 
 @media (max-width: 400px) {
@@ -118,7 +118,7 @@ nav{
   justify-content: center;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(13, 34, 92);
+  background-color: #2782e4;
   color: #f4f4f4f4;
   padding: 10px 10px;
 }
@@ -165,7 +165,7 @@ nav{
 }
 
 .admin-label a:hover {
-  color: #69a4e2;
+  color: #2782e4;
 }
 
 .home-container{
@@ -178,7 +178,7 @@ nav{
 .sidebar {
   top: 70px;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   color: #f4f4f4;
   padding-top: 5px;
   padding-left: 5px;
@@ -200,7 +200,7 @@ nav{
 }
 
 .sidebar li.active {
-  background-color: #797979;
+  background-color: #2782e4;
 }
 
 .sidebar li.active a {
@@ -217,7 +217,7 @@ nav{
 }
 
 .sidebar a:hover {
-  background-color: #797979;
+  background-color: #2782e4;
   color: white;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -228,7 +228,7 @@ nav{
   width: 900px;
   background-color: #f4f4f4;
   margin-top: 100px;
-  margin-left: 30px;
+  margin-left: 150px;
   border-radius: 8px;
   padding: 15px 20px;
 }
@@ -289,7 +289,7 @@ nav{
 }
 
 .product-form button {
-  background-color: #4e54c8;
+  background-color: #2782e4;
   color: white;
   border: none;
   cursor: pointer;
@@ -317,7 +317,7 @@ th, td {
 }
 
 th {
-  background-color: #4e54c8;
+  background-color: #226fc2;
   color: white;
 }
 
@@ -345,7 +345,7 @@ tr:nth-child(even) {
 }
 
 .product-summary-table th {
-  background-color: #4e54c8;
+  background-color: #226fc2;
   color: white;
   text-align: center;
 }
@@ -366,13 +366,13 @@ tr:nth-child(even) {
 
 
 .product-summary-table a {
-  color: #4e54c8;
+  color: #226fc2;
   font-weight: bold;
   text-decoration: none;
 }
 
 .product-summary-table a:hover {
-  color: #0056b3;
+  color: #1f62ab;
 }
 
 .btn-edit{
@@ -405,11 +405,11 @@ tr:nth-child(even) {
 
 
 .btn-edit {
-  background-color: #4e54c8;
+  background-color: #226fc2;
 }
 
 .btn-edit:hover {
-  background-color: #2782e4;
+  background-color: #1f62ab;
   text-decoration: none !important;
 }
 
@@ -551,6 +551,7 @@ tr:nth-child(even) {
 .password-wrapper {
   position: relative;
   width: 100%;
+  height: 13%;
 }
 
 .password-wrapper input {
@@ -628,7 +629,7 @@ th, td {
 }
 
 th { 
-  background-color: #4e54c8; 
+  background-color: #226fc2; 
   color: #fff; 
 }
 
@@ -648,4 +649,405 @@ tr:hover {
 .low-stock { 
   color: orange; 
   font-weight: bold; 
+}
+
+
+/* ------------------------ Receiving Page Content --------------------------- */
+
+.container {
+  width: 90%;
+  /* Adjust as needed */
+  max-width: 1200px;
+  margin: auto;
+  /* Center horizontally */
+}
+
+.form-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: lightblue;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.button {
+  background-color: #226fc2;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #1f62ab;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #2782e4;
+  text-transform: uppercase;
+}
+
+.action-buttons {
+  text-align: center;
+}
+
+.action-buttons button {
+  margin: 0 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button {
+  background-color: #2782e4;
+  color: white;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.add-button {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.container {
+    width: 95%;
+}
+
+.form-section {
+    padding: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    padding: 6px;
+}
+
+.button {
+    padding: 8px 12px;
+}
+
+th,
+td {
+    padding: 8px 10px;
+    font-size: 0.9em;
+}
+
+.action-buttons button {
+    padding: 6px 8px;
+}
+}
+
+/* Table Scroll on small screen */
+.form-section {
+    overflow-x: auto;
+    /* Enable horizontal scroll */
+}
+
+
+/* ------------------------ Sales Page Content --------------------------- */
+
+.content-container {
+    flex-grow: 20; 
+    padding: 50px;
+}
+
+
+.sales-box {
+    background-color: #fff; 
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 1000px; 
+    margin: 0 auto;
+}
+
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.form-row label {
+    font-weight: bold;
+    min-width: 80px; 
+}
+
+.form-row select,
+.form-row input[type="number"] {
+    padding: 8px;
+    border: 1px solid #101010;
+    border-radius: 4px;
+}
+
+
+.product-input-row {
+    align-items: flex-end; 
+}
+
+.product-select-group {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-select-group select {
+    width: 100%;
+}
+
+.qty-input-group {
+    display: flex;
+    flex-direction: column;
+    width: 80px; 
+}
+
+.price-input-group {
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+}
+
+.add-to-list-btn {
+  width: 50%;
+  background-color: #2782e4;
+  color: white;
+  padding: 8px 1px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 0; 
+}
+
+
+.sales-table-container {
+    margin-top: 20px;
+    border: 1px solid #181717; 
+}
+
+.sales-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sales-table-container th,
+.sales-table-container td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #080808;
+}
+
+.sales-table-container thead th {
+    background-color: #0c0c0c; 
+}
+
+.sales-table-container tfoot td {
+    font-weight: bold;
+    text-align: right;
+}
+
+.sales-table-container tfoot .total-label {
+    text-align: right;
+}
+
+.pay-btn {
+    width: 80%;
+    padding: 15px;
+    background-color: #2782e4;
+    color: white;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10%;
+}
+
+/* ------------------------ Home Page Content --------------------------- */
+
+
+.dashboard-header h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.dashboard-header .highlight {
+  text-decoration: underline;
+  color: #2c3e50;
+}
+
+.sales-summary {
+  display: flex;
+  gap: 20px;
+}
+
+.summary-box {
+  background-color: #226fc2;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  flex: 1;
+  text-align: center;
+}
+
+.summary-box h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.sales-amount {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.sales-amount::before {
+  content: "₱";
+  margin-right: 2px;
+}
+
+
+
+
+/* ------------------------ Customer Page Content --------------------------- */
+
+.customer-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.customer-head {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.customer-form .form-row {
+  margin-bottom: 15px;
+}
+
+.customer-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.customer-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.save-btn {
+  background-color: #2782e4;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+}
+
+.customer-table {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+}
+
+.customer-table th,
+.customer-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.edit-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+
+/* ------------------------ Category Page Content --------------------------- */
+
+.product-form-container-category{
+  width: 40%;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+.category-label {
+  text-align: center;
+  font-size: 20px;
 }

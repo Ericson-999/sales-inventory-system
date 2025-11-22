@@ -68,7 +68,114 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
         </ul>
       </div>
 
+      <div class="container">
+        <h2>Manage Receiving</h2>
+        <div class="form-section">
+            <h3>New Receiving</h3>
+            <div class="form-group">
+                <label for="supplier">Supplier</label>
+                <select id="supplier" name="supplier">
+                    <option value="">Please Select</option>
+                    <option value="add_new_supplier">Add New Supplier</option>
+                    <option value="supplier1">Supplier 1</option>
+                    <option value="supplier2">Supplier 2</option>
+                    <option value="supplier3">Supplier 3</option>
+                </select>
+                <div id="newSupplierInput" style="display: none;">
+                    <label for="newSupplierName">New Supplier Name:</label>
+                    <input type="text" id="newSupplierName" name="newSupplierName">
+                    <button class="button" onclick="addNewSupplier()">Add Supplier</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="product">Product</label>
+                <select id="product" name="product">
+                    <option value="">Please select here</option>
+                    <option value="add_new_product">Add New Product</option>
+                    <option value="powdered_milk">Powdered Milk - Sample product</option>
+                    <option value="chips_big">Chips (Big)</option>
+                    <option value="lemon_iced_tea">Lemon Iced Tea</option>
+                    <!-- Add product options as needed -->
+                </select>
+                <div id="newProductInput" style="display: none;">
+                    <label for="newProductName">New Product Name:</label>
+                    <input type="text" id="newProductName" name="newProductName">
+                    <button class="button" onclick="addNewProduct()">Add Product</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="qty">Qty</label>
+                <input type="number" id="qty" name="qty" min="1">
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" id="price" name="price" step="0.01" min="0.01">
+            </div>
+            <button class="button add-button" onclick="addProduct()">+ Add to List</button>
+        </div>
+
+        <div class="form-section">
+            <h3>Product List</h3>
+            <table id="productListTable">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" style="text-align: right;"><strong>Total</strong></td>
+                        <td id="totalAmount"><strong>0.00</strong></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <button class="button" onclick="saveData()">Save</button>
+        </div>
+
+        <div class="form-section">
+            <h3>Receiving Entries</h3>
+            <div style="margin-bottom: 10px;">
+                Show
+                <select>
+                    <option>10</option>
+                </select>
+                entries
+                <div style="float: right;">
+                    Search:
+                    <input type="text">
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Reference #</th>
+                        <th>Supplier</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="receivingEntriesBody">
+                </tbody>
+            </table>
+            <div>
+                Showing 1 to 2 of 2 entries
+                <div style="float: right;">
+                    Previous 1 Next
+                </div>
+            </div>
+        </div>
+    </div>
+
   </div>
   
+  <script src="js/receiving.js"></script>
 </body>
 </html>

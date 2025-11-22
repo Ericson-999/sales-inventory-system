@@ -17,6 +17,8 @@ if ($result->num_rows > 0) {
 
     // Verify password using password_verify
     if (password_verify($password, $row['password'])) {
+        // ✅ Save user_id for foreign key use
+        $_SESSION['user_id']   = $row['id'];        // <-- add this line
         $_SESSION['username']  = $row['username'];
         $_SESSION['name']      = $row['name'];
         $_SESSION['user_type'] = $row['user_type']; // 'admin' or 'staff'

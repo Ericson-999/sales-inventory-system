@@ -1,7 +1,14 @@
 <?php
 include '../backend/routes/auth.php';
+include '../backend/config/db_connect.php';
 
 $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['username'];
+
+$customerQuery = $conn->query("SELECT * FROM customer");
+$customers = $customerQuery->fetch_all(MYSQLI_ASSOC);
+
+$productQuery = $conn->query("SELECT * FROM products");
+$products = $productQuery->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +75,66 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
         </ul>
       </div>
 
+      <div class="content-container"> 
+      <div class="sales-box">
+        <h2>Sales</h2>
+
+        <!-- Hidden fields -->
+        <input type="hidden" id="reference-number" value="<?php echo uniqid('ref_'); ?>">
+        <input type="hidden" id="staff-id" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
+
+        <!-- Customer -->
+        <div class="form-row">
+          <label for="customer-select">Customer</label>
+          <select id="customer-select">
+            <?php foreach ($customers as $customer): ?>
+              <option value="<?php echo $customer['id']; ?>"><?php echo $customer['name']; ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+
+        <!-- Product, Qty -->
+        <div class="form-row product-input-row">
+          <div class="product-select-group">
+            <label for="product-select">Product</label>
+            <select id="product-select">
+              <?php foreach ($products as $product): ?>
+                <option value="<?php echo $product['id']; ?>" data-price="<?php echo $product['product_price']; ?>">
+                  <?php echo $product['product_name']; ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="qty-input-group">
+            <label for="product-qty">Qty</label>
+            <input type="number" id="product-qty" min="1" value="1">
+          </div>
+          <button type="button" class="add-to-list-btn">+ Add to List</button>
+        </div>
+
+        <!-- Sales list table -->
+        <div class="sales-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th><th>Qty</th><th>Price</th><th>Amount</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="sales-list-body"></tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3" class="total-label">Total</td>
+                <td colspan="2" class="total-amount" id="total-sales-amount">0.00</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <button type="button" class="pay-btn">Pay</button>
+      </div>
+    </div>
   </div>
-  
+
+  <script src="js/sales.js"></script>
 </body>
 </html>

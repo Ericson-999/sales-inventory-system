@@ -31,4 +31,35 @@ CREATE TABLE supplier (
   supplier_name varchar(50) NOT NULL,
   contact varchar(15) NOT NULL,
   address varchar(100) NOT NULL
-)
+);
+
+CREATE TABLE customer (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  contact VARCHAR(20),
+  address VARCHAR(70)
+);
+
+CREATE TABLE category (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  category VARCHAR(100) NOT NULL UNIQUE
+);
+
+
+CREATE TABLE sales (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  reference_number VARCHAR(50) NOT NULL,
+  product_id INT NOT NULL,
+  quantity INT NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  amount DECIMAL(10,2) GENERATED ALWAYS AS (quantity * price) STORED,
+  customer_id INT DEFAULT NULL,
+  staff_id INT NOT NULL,
+  date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  payment_method VARCHAR(30) DEFAULT 'Cash',
+  remarks TEXT,
+  
+  FOREIGN KEY (product_id) REFERENCES products(id),
+  FOREIGN KEY (customer_id) REFERENCES customer(id),
+  FOREIGN KEY (staff_id) REFERENCES users(id)
+);

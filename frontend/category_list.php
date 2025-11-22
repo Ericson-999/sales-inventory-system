@@ -1,7 +1,25 @@
 <?php
 include '../backend/routes/auth.php';
+include '../backend/config/db_connect.php';
 
 $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['username'];
+
+// Default values
+$editMode = false;
+$editData = ['id' => '', 'category' => ''];
+
+// If editing, load the category
+if (isset($_GET['edit_id'])) {
+    $editMode = true;
+    $id = intval($_GET['edit_id']);
+    $stmt = $conn->prepare("SELECT * FROM category WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $editData = $result->fetch_assoc();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -68,8 +86,70 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
         </ul>
       </div>
 
+      <div class="product-form-container-category">
+      <form action="../backend/routes/<?php echo $editMode ? 'update_category.php' : 'add_category.php'; ?>" method="POST" class="product-form">
+        <?php if ($editMode): ?>
+          <input type="hidden" name="id" value="<?php echo $editData['id']; ?>" />
+        <?php endif; ?>
+
+        <label class="category-label">Category</label>
+        <input type="text" name="category" value="<?php echo $editData['category']; ?>" placeholder="Enter Category" required />
+
+
+        <div class="form-buttons">
+          <button type="submit" class="btn-save">Save</button>
+          <button type="button" class="btn-cancel" onclick="window.location.href='category_list.php'">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="toast-container"></div>
+    
+    <div id="deleteCategoryModal" class="modal">
+      <div class="modal-content">
+        <h3>Confirm Deletion</h3>
+        <p>Are you sure you want to delete this category?</p>
+        <div class="modal-buttons">
+          <button id="confirmCategoryDeleteBtn" class="btn btn-danger">Delete</button>
+          <button type="button" onclick="closeCategoryDeleteModal()" class="btn btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-list">
+      <?php
+      include '../backend/config/db_connect.php';
+      $result = $conn->query("SELECT * FROM category");
+
+      echo "<table class='product-summary-table'>";
+      echo "<thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Action</th>
+              </tr>
+            </thead><tbody>";
+
+      while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>{$row['id']}</td>";
+        echo "<td>
+                <strong>SKU:</strong> {$row['category']}<br>
+              </td>";
+        echo "<td>
+                <a href='category_list.php?edit_id={$row['id']}' class='btn-edit'>Edit</a>
+                <button class='btn-delete' data-id='{$row['id']}'>Delete</button>
+              </td>";
+        echo "</tr>";
+      }
+
+      echo "</tbody></table>";
+      ?>
+    </div>
+
 
   </div>
-  
+  <script src="js/deletCategory.js"></script>
+  <script src="js/editCategory.js"></script>
 </body>
 </html>

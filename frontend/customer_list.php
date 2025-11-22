@@ -1,7 +1,11 @@
 <?php
 include '../backend/routes/auth.php';
+include '../backend/config/db_connect.php';
 
 $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['username'];
+
+$customerQuery = $conn->query("SELECT * FROM customer ORDER BY id DESC");
+$customers = $customerQuery->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -67,6 +71,59 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
           <?php endif; ?>
         </ul>
       </div>
+
+      <div class="customer-box">
+        <h2 class="customer-head">Customer Management</h2>
+
+        <!-- Customer Form -->
+        <form action="../backend/routes/add_customer.php" method="POST" class="customer-form">
+          <div class="form-row">
+            <label for="name">Customer Name</label>
+            <input type="text" name="name" required>
+          </div>
+          <div class="form-row">
+            <label for="contact">Contact</label>
+            <input type="text" name="contact">
+          </div>
+          <div class="form-row">
+            <label for="address">Address</label>
+            <input type="text" name="address">
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="save-btn">Save</button>
+            <button type="reset" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+
+        <!-- Customer List -->
+        <table class="customer-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Customer</th>
+              <th>Contact</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($customers as $index => $customer): ?>
+              <tr>
+                <td><?php echo $index + 1; ?></td>
+                <td><?php echo $customer['name']; ?></td>
+                <td><?php echo $customer['contact']; ?></td>
+                <td><?php echo $customer['address']; ?></td>
+                <td>
+                  <a href="edit_customer.php?id=<?php echo $customer['id']; ?>" class="edit-btn">Edit</a>
+                  <a href="../backend/routes/delete_customer.php?id=<?php echo $customer['id']; ?>" class="delete-btn" onclick="return confirm('Delete this customer?')">Delete</a>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+
+
 
   </div>
   
