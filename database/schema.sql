@@ -13,7 +13,7 @@ INSERT INTO users (name, username, password, user_type)
 VALUES (
   'Administrator',
   'admin',
-  '$2y$12$7NtnVoaTt7d0YZ4qQjoQGe8rw7B927e0wWhE3jOk5UGlNIO4A5VOu',
+  '$2y$12$B0RuKbra/h4J8GCLuwGMK.2dFAOsNSAUYngb02.GUQEJYGagUIcMS',
   'admin'
 );
 

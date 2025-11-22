@@ -14,8 +14,6 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
   <meta http-equiv="Expires" content="0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <script src="js/preventBack.js"></script>
-  <script src="js/deleteProduct.js"></script>
   <title>Home</title>
 </head>
 <body>
@@ -128,6 +126,18 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
       </form>
     </div>
 
+    <div id="toast-container"></div>
+    
+    <div id="deleteProductModal" class="modal">
+      <div class="modal-content">
+        <h3>Confirm Deletion</h3>
+        <p>Are you sure you want to delete this product?</p>
+        <div class="modal-buttons">
+          <button id="confirmProductDeleteBtn" class="btn btn-danger">Delete</button>
+          <button type="button" onclick="closeProductDeleteModal()" class="btn btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
 
     <div class="product-list">
       <?php
@@ -165,5 +175,8 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
     </div>
   </div>
   
+  <script src="js/preventBack.js"></script>
+  <script src="js/deleteProduct.js"></script>
+  <script src="js/toast.js"></script>
 </body>
 </html>

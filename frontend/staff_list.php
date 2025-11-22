@@ -11,8 +11,6 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <script src="js/preventBack.js"></script>
-  <script src="js/modal.js"></script>
   <title>Home</title>
 </head>
 <body>
@@ -71,7 +69,7 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
 
     <!-- Add New User Button -->
     <div style="margin: 30px;">
-      <button onclick="openModal()">Add New User</button>
+      <button onclick="openAddModal()">Add New User</button>
     </div>
 
     <!-- Modal -->
@@ -88,7 +86,12 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
           <input type="text" id="username" name="username" placeholder="eSample" required>
 
           <label>Password</label>
-          <input type="password" id="password" name="password" placeholder="********" required>
+            <div class="password-wrapper">
+              <input type="password" id="password" name="password" placeholder="********" required>
+              <button type="button" class="toggle-password  password-eye-btn" aria-label="Show password">
+                <i class="fa fa-eye-slash"></i>
+              </button>
+            </div>
 
           <label>User Type</label>
           <select name="user_type" id="userType" required>
@@ -102,6 +105,21 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
           </div>
         </form>
 
+      </div>
+    </div>
+    
+    <!-- Toast Notif -->
+    <div id="toast-container"></div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteConfirmModal" class="modal">
+      <div class="modal-content">
+        <h3>Confirm Deletion</h3>
+        <p>Are you sure you want to delete this user?</p>
+        <div class="modal-buttons">
+          <button id="confirmDeleteBtn" class="btn btn-danger">Delete</button>
+          <button type="button" onclick="closeDeleteModal()" class="btn btn-secondary">Cancel</button>
+        </div>
       </div>
     </div>
 
@@ -141,6 +159,9 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
 
   <script src="js/deleteStaff.js"></script>
   <script src="js/editStaff.js"></script>
-
+  <script src="js/submitStaff.js"></script>
+  <script src="js/preventBack.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/passwordToggle.js"></script>
 </body>
 </html>

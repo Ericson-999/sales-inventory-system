@@ -8,7 +8,14 @@ $address = $_POST['address'];
 
 $stmt = $conn->prepare("UPDATE supplier SET supplier_name=?, contact=?, address=? WHERE id=?");
 $stmt->bind_param("sssi", $supplier_name, $contact, $address, $id);
-$stmt->execute();
+if ($stmt->execute()) {
+    // ✅ Insert redirect here
+    header("Location: ../../frontend/supplier_list.php?edit_success=1");
+    exit();
+  } else {
+    echo "Update failed: " . $stmt->error;
+  }
 
-header("Location: ../../frontend/supplier_list.php");
+  $stmt->close();
+  $conn->close();
 ?>

@@ -1,11 +1,21 @@
 <?php
 include '../config/db_connect.php';
 
-if (isset($_GET['id'])) {
-  $id = $_GET['id'];
-  $conn->query("DELETE FROM products WHERE id=$id");
-  http_response_code(200);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+  $id = intval($_POST['id']);
+
+  $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
+  $stmt->bind_param("i", $id);
+
+  if ($stmt->execute()) {
+    echo "success";
+  } else {
+    echo "error";
+  }
+
+  $stmt->close();
+  $conn->close();
 } else {
-  http_response_code(400);
+  echo "invalid";
 }
 ?>

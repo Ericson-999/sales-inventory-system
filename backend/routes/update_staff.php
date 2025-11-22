@@ -9,11 +9,21 @@ $user_type = $_POST['user_type'];
 
 if (!empty($password)) {
     $hashed = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "UPDATE users SET name='$name', username='$username', password='$hashed', user_type='$user_type' WHERE id=$id";
+    $sql = "UPDATE users SET name=?, username=?, password=?, user_type=? WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssi", $name, $username, $hashed, $user_type, $id);
 } else {
-    $sql = "UPDATE users SET name='$name', username='$username', user_type='$user_type' WHERE id=$id";
+    $sql = "UPDATE users SET name=?, username=?, user_type=? WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssi", $name, $username, $user_type, $id);
 }
 
-$conn->query($sql);
-header("Location: ../../frontend/staff_list.php");
+if ($stmt->execute()) {
+    echo json_encode(["success" => true]);
+} else {
+    echo json_encode(["success" => false, "error" => $stmt->error]);
+}
+
+$stmt->close();
+$conn->close();
 ?>
