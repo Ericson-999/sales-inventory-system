@@ -14,6 +14,7 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
   <meta http-equiv="Expires" content="0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/all.min.css">
   <title>Home</title>
 </head>
 <body>
@@ -91,6 +92,7 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
           $editData = $query->fetch_assoc();
         }
       }
+      $categoryResult = $conn->query("SELECT category FROM category ORDER BY category ASC");
     ?>
 
     <div class="product-form-container">
@@ -105,13 +107,11 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
         <label>Category</label>
         <input list="category-options" name="category" value="<?php echo $editData['category']; ?>" placeholder="Select or type category" required />
         <datalist id="category-options">
-          <option value="Drinks">
-          <option value="Snacks">
-          <option value="Can Goods">
-          <option value="Hygiene">
-          <option value="Shampoo">
-          <option value="Milks">
+          <?php while ($cat = $categoryResult->fetch_assoc()): ?>
+            <option value="<?php echo htmlspecialchars($cat['category']); ?>">
+          <?php endwhile; ?>
         </datalist>
+
 
         <label>Product Name</label>
         <input type="text" name="product_name" value="<?php echo $editData['product_name']; ?>" placeholder="Enter product name" required />
@@ -142,7 +142,7 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
     <div class="product-list">
       <?php
       include '../backend/config/db_connect.php';
-      $result = $conn->query("SELECT * FROM products");
+      $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
 
       echo "<table class='product-summary-table'>";
       echo "<thead>

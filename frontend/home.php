@@ -2,15 +2,10 @@
 include '../backend/routes/auth.php';
 include '../backend/config/db_connect.php';
 
-// Get today's total sales
-$today = date('Y-m-d');
-$totalSalesQuery = $conn->prepare("SELECT SUM(amount) AS total_sales 
-                                   FROM sales 
-                                   WHERE DATE(date) = ?");
-                                   
-$totalSalesQuery->bind_param("s", $today);
-$totalSalesQuery->execute();
-$result = $totalSalesQuery->get_result();
+// Get curret days total sales
+$result = $conn->query("SELECT SUM(amount) AS total_sales 
+                        FROM sales 
+                        WHERE DATE(date) = CURDATE()");
 $row = $result->fetch_assoc();
 $totalSales = $row['total_sales'] ?? 0;
 
@@ -27,6 +22,7 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
   <meta http-equiv="Expires" content="0"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/all.min.css">
   <script src="js/preventBack.js"></script>
   <title>Home</title>
 </head>

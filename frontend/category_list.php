@@ -29,6 +29,7 @@ if (isset($_GET['edit_id'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/all.min.css">
   <script src="js/preventBack.js"></script>
   <title>Home</title>
 </head>
@@ -87,7 +88,7 @@ if (isset($_GET['edit_id'])) {
       </div>
 
       <div class="product-form-container-category">
-      <form action="../backend/routes/<?php echo $editMode ? 'update_category.php' : 'add_category.php'; ?>" method="POST" class="product-form">
+      <form action="../backend/routes/save_category.php" method="POST" class="product-form">
         <?php if ($editMode): ?>
           <input type="hidden" name="id" value="<?php echo $editData['id']; ?>" />
         <?php endif; ?>
@@ -119,7 +120,7 @@ if (isset($_GET['edit_id'])) {
     <div class="product-list">
       <?php
       include '../backend/config/db_connect.php';
-      $result = $conn->query("SELECT * FROM category");
+      $result = $conn->query("SELECT * FROM category ORDER BY id DESC");
 
       echo "<table class='product-summary-table'>";
       echo "<thead>
@@ -133,9 +134,7 @@ if (isset($_GET['edit_id'])) {
       while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>{$row['id']}</td>";
-        echo "<td>
-                <strong>SKU:</strong> {$row['category']}<br>
-              </td>";
+        echo "<td>{$row['category']}</td>";
         echo "<td>
                 <a href='category_list.php?edit_id={$row['id']}' class='btn-edit'>Edit</a>
                 <button class='btn-delete' data-id='{$row['id']}'>Delete</button>
@@ -147,9 +146,9 @@ if (isset($_GET['edit_id'])) {
       ?>
     </div>
 
-
   </div>
-  <script src="js/deletCategory.js"></script>
+
+  <script src="js/category.js"></script>
   <script src="js/editCategory.js"></script>
 </body>
 </html>

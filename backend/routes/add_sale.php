@@ -35,7 +35,7 @@ try {
       throw new Exception("Prepare failed: " . $conn->error);
     }
 
-    $stmt->bind_param("siidiiis", 
+    $stmt->bind_param("siidisss", 
       $reference_number, 
       $product_id, 
       $qty, 

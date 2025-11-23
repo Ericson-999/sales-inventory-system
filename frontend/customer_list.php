@@ -4,7 +4,7 @@ include '../backend/config/db_connect.php';
 
 $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['username'];
 
-$customerQuery = $conn->query("SELECT * FROM customer ORDER BY id DESC");
+$customerQuery = $conn->query("SELECT * FROM customer ORDER BY id ASC");
 $customers = $customerQuery->fetch_all(MYSQLI_ASSOC);
 ?>
 
@@ -15,6 +15,7 @@ $customers = $customerQuery->fetch_all(MYSQLI_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/all.min.css">
   <script src="js/preventBack.js"></script>
   <title>Home</title>
 </head>

@@ -11,6 +11,7 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/all.min.css">
   <title>Home</title>
 </head>
 <body>
@@ -127,7 +128,7 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
     <div class="product-list">
       <?php
       include '../backend/config/db_connect.php';
-      $result = $conn->query("SELECT * FROM users");
+      $result = $conn->query("SELECT * FROM users ORDER BY id DESC");
 
       echo "<table class='product-summary-table'>";
       echo "<thead>
