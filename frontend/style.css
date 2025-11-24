@@ -656,10 +656,8 @@ tr:hover {
 
 .container {
   width: 90%;
-  /* Adjust as needed */
   max-width: 1200px;
   margin: auto;
-  /* Center horizontally */
 }
 
 .form-section {
@@ -667,7 +665,7 @@ tr:hover {
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: lightblue;
+  background-color: #f4f4f4;
 }
 
 .form-group {
@@ -685,6 +683,7 @@ input[type="number"],
 select {
   width: 100%;
   padding: 8px;
+  border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
   margin-top: 5px;
@@ -715,10 +714,11 @@ td {
   padding: 12px 15px;
   border: 1px solid #ddd;
   text-align: center;
+  color: black;
 }
 
 th {
-  background-color: #2782e4;
+  background-color: #226fc2;
   text-transform: uppercase;
 }
 
@@ -736,7 +736,7 @@ th {
 }
 
 .edit-button {
-  background-color: #2782e4;
+  background-color: #007bff;
   color: white;
 }
 
@@ -746,47 +746,88 @@ th {
 }
 
 .add-button {
-  background-color: #28a745;
+  background-color: #226fc2;
   color: white;
+}
+
+/* Flex Container for Input Fields and Button */
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Column Widths */
+.supplier-column {
+  width: 20%;
+}
+
+.product-column {
+  width: 25%;
+}
+
+.qty-price-column {
+  width: 20%;
+}
+
+.add-button-column {
+  width: 15%;
+  text-align: center;
+}
+
+/* Style for the Show Entries select */
+.show-entries-select {
+  width: 60px;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-.container {
-    width: 95%;
-}
+  .container {
+      width: 95%;
+  }
 
-.form-section {
-    padding: 10px;
-}
+  .form-section {
+      padding: 10px;
+  }
 
-input[type="text"],
-input[type="number"],
-select {
-    padding: 6px;
-}
+  input[type="text"],
+  input[type="number"],
+  select {
+      padding: 6px;
+  }
 
-.button {
-    padding: 8px 12px;
-}
+  .button {
+      padding: 8px 12px;
+  }
 
-th,
-td {
-    padding: 8px 10px;
-    font-size: 0.9em;
-}
+  th,
+  td {
+      padding: 8px 10px;
+      font-size: 0.9em;
+      background-color: #f2f2f2;
+  }
 
-.action-buttons button {
-    padding: 6px 8px;
-}
+  .action-buttons button {
+      padding: 6px 8px;
+  
+  }
+  
+  .return-button {
+width: 50px; /* Set the width to 50px */
+
+  }
 }
 
 /* Table Scroll on small screen */
 .form-section {
-    overflow-x: auto;
-    /* Enable horizontal scroll */
+  overflow-x: auto;
+  /* Enable horizontal scroll */
 }
 
+/* Style to hide/show sections */
+.hidden {
+  display: none;
+}
 
 /* ------------------------ Sales Page Content --------------------------- */
 

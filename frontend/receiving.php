@@ -1,5 +1,12 @@
 <?php
 include '../backend/routes/auth.php';
+include '../backend/config/db_connect.php';
+
+$supplierQuery = $conn->query("SELECT id, supplier_name FROM supplier ORDER BY supplier_name ASC");
+$suppliers = $supplierQuery->fetch_all(MYSQLI_ASSOC);
+
+$productQuery = $conn->query("SELECT id, product_name FROM receiving_products ORDER BY product_name ASC");
+$receivingProducts = $productQuery->fetch_all(MYSQLI_ASSOC);
 
 $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['username'];
 ?>
@@ -69,52 +76,69 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
       </div>
 
       <div class="container">
-        <h2>Manage Receiving</h2>
-        <div class="form-section">
-            <h3>New Receiving</h3>
-            <div class="form-group">
-                <label for="supplier">Supplier</label>
-                <select id="supplier" name="supplier">
-                    <option value="">Please Select</option>
-                    <option value="add_new_supplier">Add New Supplier</option>
-                    <option value="supplier1">Supplier 1</option>
-                    <option value="supplier2">Supplier 2</option>
-                    <option value="supplier3">Supplier 3</option>
-                </select>
-                <div id="newSupplierInput" style="display: none;">
-                    <label for="newSupplierName">New Supplier Name:</label>
-                    <input type="text" id="newSupplierName" name="newSupplierName">
-                    <button class="button" onclick="addNewSupplier()">Add Supplier</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="product">Product</label>
-                <select id="product" name="product">
-                    <option value="">Please select here</option>
-                    <option value="add_new_product">Add New Product</option>
-                    <option value="powdered_milk">Powdered Milk - Sample product</option>
-                    <option value="chips_big">Chips (Big)</option>
-                    <option value="lemon_iced_tea">Lemon Iced Tea</option>
-                    <!-- Add product options as needed -->
-                </select>
-                <div id="newProductInput" style="display: none;">
-                    <label for="newProductName">New Product Name:</label>
-                    <input type="text" id="newProductName" name="newProductName">
-                    <button class="button" onclick="addNewProduct()">Add Product</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="qty">Qty</label>
-                <input type="number" id="qty" name="qty" min="1">
-            </div>
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" id="price" name="price" step="0.01" min="0.01">
-            </div>
-            <button class="button add-button" onclick="addProduct()">+ Add to List</button>
+        <!-- Navigation Buttons -->
+        <div style="margin-bottom: 20px;">
+            <button class="button" id="newReceivingButton">New Receiving</button>
+            <button class="button" id="receivingEntriesButton">View Receiving Entries</button>
         </div>
 
-        <div class="form-section">
+        <!-- Combined New Receiving and Product List Section -->
+        <div class="form-section" id="newReceivingSection">
+            <h3>New Receiving</h3>
+            <div class="input-row">
+                <div class="supplier-column">
+                    <div class="form-group">
+                      <label for="supplier">Supplier</label>
+                      <select id="supplier" name="supplier" required>
+                          <?php foreach ($suppliers as $supplier): ?>
+                              <option value="<?php echo $supplier['id']; ?>">
+                                  <?php echo htmlspecialchars($supplier['supplier_name']); ?>
+                              </option>
+                          <?php endforeach; ?>
+                      </select>
+
+                      <div id="newSupplierInput" style="display: none;">
+                          <label for="newSupplierName">New Supplier Name:</label>
+                          <input type="text" id="newSupplierName" name="newSupplierName">
+                          <button class="button" onclick="addNewSupplier()">Add Supplier</button>
+                      </div>
+                  </div>
+                </div>
+                <div class="product-column">
+                    <div class="form-group">
+                      <label for="product">Product</label>
+                      <select id="product" name="product" required>
+                        <option value="">Please select here</option>
+                        <option value="add_new_product">+ Add New Product</option>
+                        <?php foreach ($receivingProducts as $rp): ?>
+                          <option value="<?php echo $rp['id']; ?>">
+                            <?php echo htmlspecialchars($rp['product_name']); ?>
+                          </option>
+                        <?php endforeach; ?>
+                      </select>
+
+                      <div id="newProductInput" style="display: none;">
+                        <input type="text" id="newProductName" name="newProductName" placeholder="Enter New Product">
+                        <button class="button" onclick="addNewProduct()">Add Product</button>
+                      </div>
+                  </div>
+                </div>
+                <div class="qty-price-column">
+                    <div class="form-group">
+                        <label for="qty">Qty</label>
+                        <input type="number" id="qty" name="qty" min="1" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" id="price" name="price" step="0.01" min="0.01" value="1">
+                    </div>
+                </div>
+                <div class="add-button-column">
+                    <button class="button add-button" onclick="addProduct()">+ Add to List</button>
+                </div>
+            </div>
+
+            <!-- Product List Table Inside the Same Form-Section -->
             <h3>Product List</h3>
             <table id="productListTable">
                 <thead>
@@ -136,22 +160,31 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
                     </tr>
                 </tfoot>
             </table>
-            <button class="button" onclick="saveData()">Save</button>
+
+            <!-- Save Button at the Bottom -->
+            <div class="form-group">
+                <button class="button" onclick="saveData()">Save</button>
+            </div>
         </div>
 
-        <div class="form-section">
+        <!-- Receiving Entries Section -->
+        <div class="form-section hidden" id="receivingEntriesSection">
             <h3>Receiving Entries</h3>
-            <div style="margin-bottom: 10px;">
-                Show
-                <select>
-                    <option>10</option>
-                </select>
-                entries
-                <div style="float: right;">
-                    Search:
-                    <input type="text">
-                </div>
-            </div>
+            <div style="margin-bottom: 30px;">
+              Show
+              <select class="show-entries-select" id="entriesSelect">
+                  <option value="5">5</option>
+                  <option value="10" selected>10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+              </select>
+              entries
+              <div style="float: right;">
+                  Search:
+                  <input type="text" id="searchInput">
+              </div>
+          </div>
             <table>
                 <thead>
                     <tr>
@@ -178,5 +211,6 @@ $displayName = isset($_SESSION['name']) ? $_SESSION['name'] : $_SESSION['usernam
   
   <script src="js/preventBack.js"></script>
   <script src="js/receiving.js"></script>
+  <script src="js/receivingEntries.js"></script>
 </body>
 </html>

@@ -29,6 +29,7 @@ let products = [
     },
 ];
 let editingIndex = -1;
+
 function addProduct() {
     const productSelect = document.getElementById('product');
     const product = productSelect.options[productSelect.selectedIndex].text;
@@ -141,8 +142,9 @@ function saveData() {
     saveReceivingEntries();
     productList = [];
     updateProductListTable();
-
     updateReceivingEntriesTable();
+
+    showReceivingEntriesSection();
 
     alert('Data saved!');
 }
@@ -205,6 +207,7 @@ function populateSupplierOptions() {
         option.value = supplier.value;
         option.text = supplier.text;
         supplierSelect.add(option);
+
     });
 }
 
@@ -216,7 +219,19 @@ function populateProductOptions() {
         option.value = product.value;
         option.text = product.text;
         productSelect.add(option);
+
+
     });
+}
+
+function showReceivingEntriesSection() {
+    document.getElementById('newReceivingSection').classList.add('hidden');
+    document.getElementById('receivingEntriesSection').classList.remove('hidden');
+}
+
+function showNewReceivingSection() {
+    document.getElementById('newReceivingSection').classList.remove('hidden');
+    document.getElementById('receivingEntriesSection').classList.add('hidden');
 }
 document.getElementById("supplier").addEventListener("change", function() {
     if (this.value === "add_new_supplier") {
@@ -231,9 +246,18 @@ document.getElementById("product").addEventListener("change", function() {
         document.getElementById("newProductInput").style.display = "block";
     } else {
         document.getElementById("newProductInput").style.display = "none";
-    }
-});
-
-loadReceivingEntries();
-populateSupplierOptions();
-populateProductOptions();
+        }
+    });
+    document.getElementById('newReceivingButton').addEventListener('click', function() {
+        showNewReceivingSection();
+    });
+    document.getElementById('receivingEntriesButton').addEventListener('click', function() {
+        showReceivingEntriesSection();
+    });
+    document.getElementById('returnToNewReceiving').addEventListener('click', function() {
+        showNewReceivingSection();
+    });
+    loadReceivingEntries();
+    populateSupplierOptions();
+    populateProductOptions();
+    document.getElementById('receivingEntriesSection').classList.add('hidden');
